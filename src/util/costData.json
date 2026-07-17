@@ -1,0 +1,101 @@
+{
+  "kuala_lumpur": {
+    "locationName": "Kuala Lumpur (City Centre)",
+    "tier": "High",
+    "costs": {
+      "housing": 2500,
+      "food": 900,
+      "transport": 200,
+      "utilities": 300,
+      "leisure": 500
+    }
+  },
+  "george_town": {
+    "locationName": "George Town, Penang",
+    "tier": "High",
+    "costs": {
+      "housing": 1800,
+      "food": 800,
+      "transport": 250,
+      "utilities": 250,
+      "leisure": 400
+    }
+  },
+  "johor_bahru": {
+    "locationName": "Johor Bahru (City Centre)",
+    "tier": "High",
+    "costs": {
+      "housing": 1600,
+      "food": 750,
+      "transport": 300,
+      "utilities": 250,
+      "leisure": 350
+    }
+  },
+  "bangi_shah_alam": {
+    "locationName": "Bangi / Shah Alam (Commuter-Centric)",
+    "tier": "Medium",
+    "costs": {
+      "housing": 1200,
+      "food": 600,
+      "transport": 350,
+      "utilities": 200,
+      "leisure": 300
+    }
+  },
+  "ipoh": {
+    "locationName": "Ipoh, Perak",
+    "tier": "Medium",
+    "costs": {
+      "housing": 900,
+      "food": 500,
+      "transport": 200,
+      "utilities": 180,
+      "leisure": 250
+    }
+  },
+  "melaka_city": {
+    "locationName": "Melaka City",
+    "tier": "Medium",
+    "costs": {
+      "housing": 1000,
+      "food": 550,
+      "transport": 200,
+      "utilities": 180,
+      "leisure": 250
+    }
+  },
+  "alor_setar": {
+    "locationName": "Alor Setar, Kedah",
+    "tier": "Low",
+    "costs": {
+      "housing": 700,
+      "food": 450,
+      "transport": 150,
+      "utilities": 150,
+      "leisure": 150
+    }
+  },
+  "kota_bharu": {
+    "locationName": "Kota Bharu, Kelantan",
+    "tier": "Low",
+    "costs": {
+      "housing": 650,
+      "food": 450,
+      "transport": 150,
+      "utilities": 150,
+      "leisure": 150
+    }
+  },
+  "kuala_terengganu": {
+    "locationName": "Kuala Terengganu",
+    "tier": "Low",
+    "costs": {
+      "housing": 700,
+      "food": 500,
+      "transport": 150,
+      "utilities": 150,
+      "leisure": 200
+    }
+  }
+}
