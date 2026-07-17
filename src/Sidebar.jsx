@@ -1,4 +1,4 @@
-export default function Sidebar() {
+export default function Sidebar({ onLinkClick }) {
   return (
     <aside className="w-64 bg-indigo-800 flex flex-col hidden md:flex shrink-0 border-r border-indigo-700 h-full">
       
@@ -14,7 +14,10 @@ export default function Sidebar() {
         </div>
 
         {/* Inactive Navigation Item Placeholders */}
-        <div className="w-full h-10 hover:bg-white/5 rounded-lg flex items-center px-4 transition-colors cursor-pointer">
+        <div 
+          onClick={() => onLinkClick('Dashboard Item')} 
+          className="w-full h-10 hover:bg-white/5 rounded-lg flex items-center px-4 transition-colors cursor-pointer"
+        >
           <div className="w-5 h-5 bg-indigo-400/30 rounded-md mr-3 shrink-0"></div>
           <div className="h-3 w-24 bg-indigo-300/50 rounded"></div>
         </div>
