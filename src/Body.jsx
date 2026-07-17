@@ -12,6 +12,27 @@ export default function Body() {
   const totalAvailableMYR = inputFundsMYR;
   const selectedRegionData = flatRegions.find(r => r.locationName === selectedRegion) || klData;
   
+  // Calculate total monthly cost for the selected region
+  const totalMonthlyCost = Object.values(selectedRegionData.costs).reduce((acc, cost) => acc + cost, 0);
+
+  // Calculate projected runway in months (rounded to 1 decimal place)
+  const runwayMonths = totalMonthlyCost > 0 
+    ? (totalAvailableMYR / totalMonthlyCost).toFixed(1) 
+    : 0;
+    
+  // Calculate dynamic percentages safely (avoiding divide-by-zero)
+  const getPercentage = (cost) => {
+    if (totalMonthlyCost === 0) return 0;
+    return Math.round((cost / totalMonthlyCost) * 100);
+  };
+
+  const costs = selectedRegionData.costs;
+  const housingPct = getPercentage(costs.housing);
+  const foodPct = getPercentage(costs.food);
+  const transportPct = getPercentage(costs.transport);
+  const utilitiesPct = getPercentage(costs.utilities);
+  const leisurePct = getPercentage(costs.leisure);
+  
   return (
     <main className="flex-1 bg-gray-50 p-6 overflow-y-auto w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
       
@@ -101,7 +122,7 @@ export default function Body() {
             <div className="w-7 h-7 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xs font-bold">TIME</div>
           </div>
           <div>
-            <p className="text-2xl font-bold text-gray-900 mt-1">16.4 Months</p>
+            <p className="text-2xl font-bold text-gray-900 mt-1">{runwayMonths} Months</p>
             <span className="text-emerald-500 text-xs font-medium mt-2 block">Safe burn rate distribution</span>
           </div>
         </div>
@@ -120,21 +141,21 @@ export default function Body() {
 
           {/* Visual Stacked Progress Bar */}
           <div className="w-full h-5 bg-gray-100 rounded-full overflow-hidden flex mb-6">
-            <div className="h-full bg-indigo-500" style={{ width: '45%' }} title="Housing"></div>
-            <div className="h-full bg-emerald-500" style={{ width: '25%' }} title="Food"></div>
-            <div className="h-full bg-amber-400" style={{ width: '15%' }} title="Transport"></div>
-            <div className="h-full bg-purple-400" style={{ width: '10%' }} title="Utilities"></div>
-            <div className="h-full bg-sky-400" style={{ width: '5%' }} title="Leisure"></div>
+            <div className="h-full bg-indigo-500" style={{ width: `${housingPct}%` }} title="Housing"></div>
+            <div className="h-full bg-emerald-500" style={{ width: `${foodPct}%` }} title="Food"></div>
+            <div className="h-full bg-amber-400" style={{ width: `${transportPct}%` }} title="Transport"></div>
+            <div className="h-full bg-purple-400" style={{ width: `${utilitiesPct}%` }} title="Utilities"></div>
+            <div className="h-full bg-sky-400" style={{ width: `${leisurePct}%` }} title="Leisure"></div>
           </div>
 
           {/* Detailed Categorical Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
             {[
-              { label: 'Housing (45%)', value: 'RM 1,200', color: 'bg-indigo-500' },
-              { label: 'Food & Groceries (25%)', value: 'RM 600', color: 'bg-emerald-500' },
-              { label: 'Transport/Tolls (15%)', value: 'RM 350', color: 'bg-amber-400' },
-              { label: 'Utilities/Net (10%)', value: 'RM 200', color: 'bg-purple-400' },
-              { label: 'Leisure/Misc (5%)', value: 'RM 350', color: 'bg-sky-400' },
+              { label: `Housing (${housingPct}%)`, value: `RM ${costs.housing.toLocaleString()}`, color: 'bg-indigo-500' },
+              { label: `Food & Groceries (${foodPct}%)`, value: `RM ${costs.food.toLocaleString()}`, color: 'bg-emerald-500' },
+              { label: `Transport/Tolls (${transportPct}%)`, value: `RM ${costs.transport.toLocaleString()}`, color: 'bg-amber-400' },
+              { label: `Utilities/Net (${utilitiesPct}%)`, value: `RM ${costs.utilities.toLocaleString()}`, color: 'bg-purple-400' },
+              { label: `Leisure/Misc (${leisurePct}%)`, value: `RM ${costs.leisure.toLocaleString()}`, color: 'bg-sky-400' },
             ].map((category, index) => (
               <div key={index} className="flex flex-col border-l-2 pl-3 border-gray-100">
                 <div className="flex items-center gap-1.5 mb-1">
