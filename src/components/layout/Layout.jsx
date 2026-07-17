@@ -1,7 +1,7 @@
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
-import Body from './Body';
+import Dashboard from '../dashboard/Dashboard';
 
 export default function Layout() {
   // Define the callback function in the parent
@@ -22,8 +22,8 @@ export default function Layout() {
         {/* Pass the callback function to the Child component as a prop */}
         <Sidebar onLinkClick={handleSidebarClick} />
 
-        {/* Body component (already contains the <main> tag, flex-1, and scroll logic) */}
-        <Body />
+        {/* Dashboard component (already contains the <main> tag, flex-1, and scroll logic) */}
+        <Dashboard />
         
       </div>
 
